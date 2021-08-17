@@ -10,6 +10,7 @@ Nele você tem acesso a uma tabela atualizada com os animes disponíveis e a qua
 que estão disponíveis para download.
 
 - Antes de rodar o programa, digite: pip install -r requirements.txt
+- A tabela de animes vai estar sendo atualizada sempre!
 
 # Fale comigo pelo whatsapp:
 
