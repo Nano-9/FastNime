@@ -16,7 +16,6 @@ que estão disponíveis para download.
 
 - Clique aqui: ![Whatsapp](https://wa.me/5531986802198)
 
-
 ## Opções dentro do FastNime:
 
 Por enquanto são duas opções, são elas:
