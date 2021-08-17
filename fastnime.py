@@ -1,4 +1,4 @@
-# esse script está sendo desenvolvido por lucas walker
+# esse script está sendo desenvolvido por lucas walker (lucas-Dk)
 # script para baixar animes ou assistir online pelo navegador
 # [ATENÇÃO] leia o Readme.md para saber sobre!
 
