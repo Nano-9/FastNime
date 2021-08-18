@@ -94,7 +94,7 @@ class AnimeDownload:
 									self.url_download2 = links
 
 	def download_episodio_anime(self):
-		self.local_armazenamento = Path.home() / r"Downloads\FastNime"
+		self.local_armazenamento = os.path.dirname(os.path.realpath(__file__))
 		os.makedirs("Animes",exist_ok=True)
 		self.x = requests.get(self.url_download,stream=True)
 		if self.x.status_code == 200:
