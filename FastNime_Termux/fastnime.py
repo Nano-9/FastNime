@@ -9,7 +9,7 @@ import json
 import datetime
 import rich
 from entrada import inicio
-from tabela_fastnime import mostar_catalogo_fastnime
+from tabela_fastnime import mostrar_catalogo_fastnime
 from down import iniciar_download
 from tqdm import tqdm
 from time import sleep
@@ -151,7 +151,7 @@ class FastNime:
 			if self.escolha == 1:
 
 				limpar()
-				mostar_catalogo_fastnime()
+				mostrar_catalogo_fastnime()
 				print("\nEnter para voltar ao menu: ")
 				input()
 
