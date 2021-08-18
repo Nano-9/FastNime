@@ -482,5 +482,5 @@ class iniciar_download:
 						for dados in self.progresso:
 							os.path.join("Kaichou_Wa_Maid_Sama"+"/"+str(video_kaich.write(dados)))
 							self.progresso.update(len(dados))
-							self.console.print("Status [COMPLETO]!",style="green bold")
+						self.console.print("Status [COMPLETO]!",style="green bold")
 						video_kaich.close()
