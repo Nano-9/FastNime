@@ -17,7 +17,7 @@ que estão disponíveis para download.
 #### Deixe o programa na pasta de DOWNLOADS
 
 - Se você usa o Windows, rode o fastnime.py
-- Se você usa o Linux, entre no diretório FastNime_linux e rode o fastnime.py
+- Se você usa o Linux, entre no diretório FastNime_Linux e rode o fastnime.py
 - Se você usa o Termux, entre no ditetório FastNime_Termux e rode o fastnime.py
 
 
