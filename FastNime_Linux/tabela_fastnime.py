@@ -1,7 +1,7 @@
 # modulo do fastnime, está separado para não ficar um código gigante
 from tabulate import tabulate
 
-def mostar_catalogo_fastnime():
+def mostrar_catalogo_fastnime():
 		cabecalho = ["Animes","Episodios disp","Servidores","Leg/Dub"]
 		dados = [
 
