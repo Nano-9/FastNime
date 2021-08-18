@@ -25,7 +25,7 @@ else:
 
 class AnimeDownload:
 
-	def __init__(self,episodio,nome,preferencia,tudo):
+	def __init__(self,episodio,nome,preferencia,tudo,hora,minuto,segundo):
 		if sys.platform == "win32":
 			os.system("cls")
 		elif sys.platform == "linux":
@@ -35,6 +35,9 @@ class AnimeDownload:
 		self.nome = nome
 		self.nome2 = nome.lower()
 		self.preferencia = preferencia.capitalize()
+		self.diahora = hora
+		self.diaminuto = minuto
+		self.diasegundo = segundo
 		self.url_download = ""
 		self.url_anime = ""
 		self.nome_download = ""
@@ -98,10 +101,10 @@ class AnimeDownload:
 			print("Conexão aceita!\n")
 			sleep(2)
 			os.system("clear")
-			self.console.print("============== ÁREA DE DOWNLOADS DO EPISÓDIO ==============\n",style="red bold")
+			self.console.print("============== ÁREA DE DOWNLOAD DO EPISÓDIO ==============\n",style="red bold")
 			print("Baixando o episódio {} de {}\n".format(self.episodio,self.nome_download))
 			self.tamanho_episodio = int(self.x.headers["Content-length"])
-			self.barra_progresso = tqdm(desc="Baixando...",iterable=self.x.iter_content(chunk_size=1024),total=self.tamanho_episodio,unit=" Kb",unit_scale=True,unit_divisor=1024,colour="blue")
+			self.barra_progresso = tqdm(desc=f"[{self.diahora}:{self.diaminuto}:{self.diasegundo}] [\033[1;32mINFO\033[m]: Baixando",iterable=self.x.iter_content(chunk_size=1024),total=self.tamanho_episodio,unit=" Kb",unit_scale=True,unit_divisor=1024,colour="blue")
 			
 			os.chdir(self.local_armazenamento)
 			try:
@@ -120,6 +123,7 @@ class AnimeDownload:
 					ep.close()
 
 			print("Episódio {} de {} baixado!".format(self.episodio,self.nome_download))
+			sleep(3)
 		else:
 			print("[ATENÇÃO]: A conexão não foi estabelecida com o host!")
 			print("voltando...")
@@ -128,7 +132,7 @@ class AnimeDownload:
 	def download_todos_os_episodios(self):
 		limpar()
 		self.console.print("============== ÁREA DE DOWNLOADS DOS EPISÓDIOS ==============\n",style="red bold")
-		baix = iniciar_download(iniciar="On",url=self.url_download2,nome=self.nome)
+		baix = iniciar_download(iniciar="On",url=self.url_download2,nome=self.nome,hora=self.diahora,minuto=self.diaminuto,segundo=self.diasegundo)
 		baix.comecar_baixar()
 		
 # função de fora que é para limpar o terminal
@@ -146,9 +150,9 @@ class FastNime:
 
 	def __init__(self):
 		self.data = str(datetime.datetime.now())
-		self.hora = datetime.datetime.now().hour
-		self.minuto = datetime.datetime.now().minute
-		self.segundo = datetime.datetime.now().minute
+		self.hora = self.data[11:13]
+		self.minuto = self.data[14:16]
+		self.segundo = self.data[17:19]
 		self.ano = self.data[0:4]
 		self.mes = self.data[5:7]
 		self.dia = self.data[8:10]
@@ -156,7 +160,6 @@ class FastNime:
 	def pegar_escolha_usuario(self):
 		while True:
 			limpar()
-
 			print("Programa rodando em {}/{}/{} as {}:{}:{}".format(self.dia,self.mes,self.ano,self.hora,self.minuto,self.segundo))
 			self.escolha = inicio()
 
@@ -174,26 +177,26 @@ class FastNime:
 					self.nome = str(input("Informe o nome completo do anime que deseja baixar: ")).strip().capitalize()
 					self.episodio = str(input("Informe o número do episódio que deseja baixar: ")).strip()
 				except KeyboardInterrupt:
-					print("\nO usuário resolvou fechar o programa!")
+					print("\nO usuário resolveu fechar o programa!")
 					sleep(1)
 					sys.exit()
 				if self.nome != "Cavaleiros do zodiaco":
 					try:
 						self.preferencia = str(input("Você quer legendado ou dublado: ")).strip()
 					except KeyboardInterrupt:
-						print("\nO usuário resolvou fechar o programa!")
+						print("\nO usuário resolveu fechar o programa!")
 						sleep(1)
 						sys.exit()
 				try:
 					self.download_tudo_ou_nao = str(input("Deseja baixar todos os episódios do anime escolhido [S/N]: ")).strip().upper()
 				except KeyboardInterrupt:
-					print("\nO usuário resolvou fechar o programa!")
+					print("\nO usuário resolveu fechar o programa!")
 					sleep(1)
 					sys.exit()
 				if int(self.episodio) > 0 and int(self.episodio) < 10:
 					if self.episodio in self.lista_valida:
 						if self.nome == "Cavaleiros do zodiaco":
-							self.search_anime = AnimeDownload(episodio=self.episodio,nome=self.nome,preferencia="dublado",tudo=self.download_tudo_ou_nao)
+							self.search_anime = AnimeDownload(episodio=self.episodio,nome=self.nome,preferencia="dublado",tudo=self.download_tudo_ou_nao,hora=self.hora,minuto=self.minuto,segundo=self.segundo)
 							self.search_anime.pegar_dados()
 							if self.download_tudo_ou_nao in "S":
 								self.search_anime.download_todos_os_episodios()
@@ -201,7 +204,7 @@ class FastNime:
 								self.search_anime.pegar_dados()
 								self.search_anime.download_episodio_anime()
 						else:
-							self.search_anime = AnimeDownload(episodio=self.episodio,nome=self.nome,preferencia=self.preferencia,tudo=self.download_tudo_ou_nao)
+							self.search_anime = AnimeDownload(episodio=self.episodio,nome=self.nome,preferencia=self.preferencia,tudo=self.download_tudo_ou_nao,hora=self.hora,minuto=self.minuto,segundo=self.segundo)
 							if self.download_tudo_ou_nao in "S":
 								self.search_anime.pegar_dados()
 								self.search_anime.download_todos_os_episodios()
@@ -214,7 +217,7 @@ class FastNime:
 						sleep(4)
 
 				else:
-					self.search_anime = AnimeDownload(episodio=self.episodio,nome=self.nome,preferencia=self.preferencia,tudo=self.download_tudo_ou_nao)
+					self.search_anime = AnimeDownload(episodio=self.episodio,nome=self.nome,preferencia=self.preferencia,tudo=self.download_tudo_ou_nao,hora=self.hora,minuto=self.minuto,segundo=self.segundo)
 					if self.download_tudo_ou_nao in "S":
 						self.search_anime.pegar_dados()
 						self.search_anime.download_todos_os_episodios()
