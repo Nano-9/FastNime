@@ -2,19 +2,26 @@
 # script para baixar animes ou assistir online pelo navegador
 # [ATENÇÃO] leia o Readme.md para saber sobre!
 
-import os
-import sys
-import requests
-import json
-import datetime
-import rich
-from entrada import inicio
-from tabela_fastnime import mostrar_catalogo_fastnime
-from down import iniciar_download
-from tqdm import tqdm
-from time import sleep
-from pathlib import Path
-from rich.console import Console
+try:
+	import os
+	import sys
+	import requests
+	import json
+	import datetime
+	import rich
+	from entrada import inicio
+	from tabela_fastnime import mostrar_catalogo_fastnime
+	from down import iniciar_download
+	from tqdm import tqdm
+	from time import sleep
+	from pathlib import Path
+	from rich.console import Console
+except:
+	print("\n[ATENÇÃO]: Parece que você não tem as bibliotecas necessárias para rodar o programa!\n")
+	print("Digite: pip install -r requirements.txt e tente novamente!")
+	sys.exit()
+else:
+	pass
 
 class AnimeDownload:
 
@@ -91,6 +98,7 @@ class AnimeDownload:
 			print("Conexão aceita!\n")
 			sleep(2)
 			os.system("clear")
+			self.console.print("============== ÁREA DE DOWNLOADS DO EPISÓDIO ==============\n",style="red bold")
 			print("Baixando o episódio {} de {}\n".format(self.episodio,self.nome_download))
 			self.tamanho_episodio = int(self.x.headers["Content-length"])
 			self.barra_progresso = tqdm(desc="Baixando...",iterable=self.x.iter_content(chunk_size=1024),total=self.tamanho_episodio,unit=" Kb",unit_scale=True,unit_divisor=1024,colour="blue")
@@ -112,10 +120,14 @@ class AnimeDownload:
 					ep.close()
 
 			print("Episódio {} de {} baixado!".format(self.episodio,self.nome_download))
+		else:
+			print("[ATENÇÃO]: A conexão não foi estabelecida com o host!")
+			print("voltando...")
+			sleep(3)
 
 	def download_todos_os_episodios(self):
 		limpar()
-
+		self.console.print("============== ÁREA DE DOWNLOADS DOS EPISÓDIOS ==============\n",style="red bold")
 		baix = iniciar_download(iniciar="On",url=self.url_download2,nome=self.nome)
 		baix.comecar_baixar()
 		
@@ -158,14 +170,26 @@ class FastNime:
 			elif self.escolha == 2:
 				limpar()
 				self.lista_valida = ["01","02","03","04","05","06","07","08","09"]
-
-				self.nome = str(input("Informe o nome completo do anime que deseja baixar: ")).strip().capitalize()
-				self.episodio = str(input("Informe o número do episódio que deseja baixar: ")).strip()
+				try:
+					self.nome = str(input("Informe o nome completo do anime que deseja baixar: ")).strip().capitalize()
+					self.episodio = str(input("Informe o número do episódio que deseja baixar: ")).strip()
+				except KeyboardInterrupt:
+					print("\nO usuário resolvou fechar o programa!")
+					sleep(1)
+					sys.exit()
 				if self.nome != "Cavaleiros do zodiaco":
-					self.preferencia = str(input("Você quer legendado ou dublado: ")).strip()
-
-				self.download_tudo_ou_nao = str(input("Deseja baixar todos os episódios do anime escolhido [S/N]: ")).strip().upper()
-
+					try:
+						self.preferencia = str(input("Você quer legendado ou dublado: ")).strip()
+					except KeyboardInterrupt:
+						print("\nO usuário resolvou fechar o programa!")
+						sleep(1)
+						sys.exit()
+				try:
+					self.download_tudo_ou_nao = str(input("Deseja baixar todos os episódios do anime escolhido [S/N]: ")).strip().upper()
+				except KeyboardInterrupt:
+					print("\nO usuário resolvou fechar o programa!")
+					sleep(1)
+					sys.exit()
 				if int(self.episodio) > 0 and int(self.episodio) < 10:
 					if self.episodio in self.lista_valida:
 						if self.nome == "Cavaleiros do zodiaco":
@@ -178,7 +202,6 @@ class FastNime:
 								self.search_anime.download_episodio_anime()
 						else:
 							self.search_anime = AnimeDownload(episodio=self.episodio,nome=self.nome,preferencia=self.preferencia,tudo=self.download_tudo_ou_nao)
-							#self.search_anime.pegar_dados()
 							if self.download_tudo_ou_nao in "S":
 								self.search_anime.pegar_dados()
 								self.search_anime.download_todos_os_episodios()
