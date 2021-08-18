@@ -12,6 +12,15 @@ que estão disponíveis para download.
 - Antes de rodar o programa, digite: pip install -r requirements.txt
 - A tabela de animes vai estar sendo atualizada sempre!
 
+# [ATENÇÃO]:
+
+#### Deixe o programa na pasta de DOWNLOADS
+
+- Se você usa o Windows, rode o fastnime.py
+- Se você usa o Linux, entre no diretório FastNime_linux e rode o fastnime.py
+- Se você usa o Termux, entre no ditetório FastNime_Termux e rode o fastnime.py
+
+
 # Fale comigo pelo whatsapp:
 
 - Clique aqui: ![Whatsapp](https://wa.me/5531986802198)
