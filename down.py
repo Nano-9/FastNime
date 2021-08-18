@@ -14,7 +14,7 @@ class iniciar_download:
 		self.diahora = hora
 		self.diaminuto = minuto
 		self.diasegundo = segundo
-		self.local_armazenamento = Path.home() / r"Downloads\FastNime"
+		self.local_armazenamento = os.path.dirname(os.path.realpath(__file__))
 		self.console = Console()
 
 	def comecar_baixar(self):
