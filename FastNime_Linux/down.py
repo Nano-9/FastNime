@@ -7,10 +7,13 @@ from pathlib import Path
 
 class iniciar_download:
 
-	def __init__(self,iniciar,url,nome):
+	def __init__(self,iniciar,url,nome,hora,minuto,segundo):
 		self.iniciar = iniciar
 		self.url_download2 = url
 		self.nome = nome
+		self.diahora = hora
+		self.diaminuto = minuto
+		self.diasegundo = segundo
 		self.local_armazenamento = Path.home() / "Downloads/FastNime"
 		self.console = Console()
 
@@ -75,7 +78,7 @@ class iniciar_download:
 					self.http = 'https://servertv001.com/animes/n/naruto-classico-legendado'+"/{}.mp4".format(ep)
 					self.r = requests.get(self.http,stream=True)
 					self.total_arquivo = int(self.r.headers["Content-length"])
-					self.progresso = tqdm(desc="Baixando...",iterable=self.r.iter_content(chunk_size=1024),total=self.total_arquivo,unit=" Kb",unit_scale=True,unit_divisor=1024,colour="blue")
+					self.progresso = tqdm(desc=f"[{self.diahora}:{self.diaminuto}:{self.diasegundo}] [\033[1;32mINFO\033[m]: Baixando",iterable=self.r.iter_content(chunk_size=1024),total=self.total_arquivo,unit=" Kb",unit_scale=True,unit_divisor=1024,colour="blue")
 					
 					with open(self.nome+str(ep)+".mp4","wb") as video_naruto:
 						for dados in self.progresso:
@@ -94,11 +97,12 @@ class iniciar_download:
 					self.http = 'https://servertv001.com/animes/n/nanatsu-no-taizai'+"/{}.mp4".format(ep)
 					self.r = requests.get(self.http,stream=True)
 					self.total_arquivo = int(self.r.headers["Content-length"])
-					self.progresso = tqdm(desc="Baixando...",iterable=self.r.iter_content(chunk_size=1024),total=self.total_arquivo,unit=" Kb",unit_scale=True,unit_divisor=1024,colour="blue")
+					self.progresso = tqdm(desc=f"[{self.diahora}:{self.diaminuto}:{self.diasegundo}] [\033[1;32mINFO\033[m]: Baixando",iterable=self.r.iter_content(chunk_size=1024),total=self.total_arquivo,unit=" Kb",unit_scale=True,unit_divisor=1024,colour="blue")
 					with open(self.nome+str(ep)+".mp4","wb") as video_nanatsu:
 						for dados in self.progresso:
 							os.path.join("Nanatsu_No_Taizai"+"/"+str(video_nanatsu.write(dados)))
 							self.progresso.update(len(dados))
+						self.console.print("Status [COMPLETO]!",style="green bold")
 						video_nanatsu.close()
 
 			elif "one-piece" in self.url_download2:
@@ -111,11 +115,12 @@ class iniciar_download:
 					self.http = 'https://cdn.serverotaku01.co/010/animes/o/one-piece/'+"/{}.mp4".format(ep)
 					self.r = requests.get(self.http,stream=True)
 					self.total_arquivo = int(self.r.headers["Content-length"])
-					self.progresso = tqdm(desc="Baixando...",iterable=self.r.iter_content(chunk_size=1024),total=self.total_arquivo,unit=" Kb",unit_scale=True,unit_divisor=1024,colour="blue")
+					self.progresso = tqdm(desc=f"[{self.diahora}:{self.diaminuto}:{self.diasegundo}] [\033[1;32mINFO\033[m]: Baixando",iterable=self.r.iter_content(chunk_size=1024),total=self.total_arquivo,unit=" Kb",unit_scale=True,unit_divisor=1024,colour="blue")
 					with open(self.nome+str(ep)+".mp4","wb") as video_one:
 						for dados in self.progresso:
 							os.path.join("One_Piece"+"/"+str(video_one.write(dados)))
 							self.progresso.update(len(dados))
+						self.console.print("Status [COMPLETO]!",style="green bold")
 						video_one.close()
 
 			elif "no-game-no-life" in self.url_download2:
@@ -128,11 +133,12 @@ class iniciar_download:
 					self.http = "https://servertv001.com/animes/n/no-game-no-life/"+"{}.mp4".format(ep)
 					self.r = requests.get(self.http,stream=True)
 					self.total_arquivo = int(self.r.headers["Content-length"])
-					self.progresso = tqdm(desc="Baixando...",iterable=self.r.iter_content(chunk_size=1024),total=self.total_arquivo,unit=" Kb",unit_scale=True,unit_divisor=1024,colour="blue")
+					self.progresso = tqdm(desc=f"[{self.diahora}:{self.diaminuto}:{self.diasegundo}] [\033[1;32mINFO\033[m]: Baixando",iterable=self.r.iter_content(chunk_size=1024),total=self.total_arquivo,unit=" Kb",unit_scale=True,unit_divisor=1024,colour="blue")
 					with open(self.nome+str(ep)+".mp4","wb") as video_nogame:
 						for dados in self.progresso:
 							os.path.join("No_Game_No_Life"+"/"+str(video_nogame.write(dados)))
 							self.progresso.update(len(dados))
+						self.console.print("Status [COMPLETO]!",style="green bold")
 						video_nogame.close()
 
 			elif "dr-stone" in self.url_download2:
@@ -145,12 +151,13 @@ class iniciar_download:
 					self.http = "https://cdn.serverotaku01.co/010/animes/d/dr-stone/"+"{}.mp4".format(ep)
 					self.r = requests.get(self.http,stream=True)
 					self.total_arquivo = int(self.r.headers["Content-length"])
-					self.progresso = tqdm(desc="Baixando...",iterable=self.r.iter_content(chunk_size=1024),total=self.total_arquivo,unit=" Kb",unit_scale=True,unit_divisor=1024,colour="blue")
+					self.progresso = tqdm(desc=f"[{self.diahora}:{self.diaminuto}:{self.diasegundo}] [\033[1;32mINFO\033[m]: Baixando",iterable=self.r.iter_content(chunk_size=1024),total=self.total_arquivo,unit=" Kb",unit_scale=True,unit_divisor=1024,colour="blue")
 					
 					with open(self.nome+str(ep)+".mp4","wb") as video_dr:
 						for dados in self.progresso:
 							os.path.join("Dr_Stone"+"/"+str(video_dr.write(dados)))
 							self.progresso.update(len(dados))
+						self.console.print("Status [COMPLETO]!",style="green bold")
 						video_dr.close()
 
 			elif "one-punch-man" in self.url_download2:
@@ -163,7 +170,7 @@ class iniciar_download:
 					self.http = "https://servertv001.com/animes/o/one-punch-man/"+"{}.mp4".format(ep)
 					self.r = requests.get(self.http,stream=True)
 					self.total_arquivo = int(self.r.headers["Content-length"])
-					self.progresso = tqdm(desc="Baixando...",iterable=self.r.iter_content(chunk_size=1024),total=self.total_arquivo,unit=" Kb",unit_scale=True,unit_divisor=1024,colour="blue")
+					self.progresso = tqdm(desc=f"[{self.diahora}:{self.diaminuto}:{self.diasegundo}] [\033[1;32mINFO\033[m]: Baixando",iterable=self.r.iter_content(chunk_size=1024),total=self.total_arquivo,unit=" Kb",unit_scale=True,unit_divisor=1024,colour="blue")
 
 					with open(self.nome+str(ep)+".mp4","wb") as video_onepunch:
 						for dados in self.progresso:
@@ -183,7 +190,7 @@ class iniciar_download:
 					self.http = "https://servertv001.com/animes/a/akame-ga-kill/"+"{}.mp4".format(ep)
 					self.r = requests.get(self.http,stream=True)
 					self.total_arquivo = int(self.r.headers["Content-length"])
-					self.progresso = tqdm(desc="Baixando...",iterable=self.r.iter_content(chunk_size=1024),total=self.total_arquivo,unit=" Kb",unit_scale=True,unit_divisor=1024,colour="blue")
+					self.progresso = tqdm(desc=f"[{self.diahora}:{self.diaminuto}:{self.diasegundo}] [\033[1;32mINFO\033[m]: Baixando",iterable=self.r.iter_content(chunk_size=1024),total=self.total_arquivo,unit=" Kb",unit_scale=True,unit_divisor=1024,colour="blue")
 			
 					with open(self.nome+str(ep)+".mp4","wb") as video_akame:
 						for dados in self.progresso:
@@ -202,13 +209,14 @@ class iniciar_download:
 					self.http = "https://servertv001.com/animes/b/black-clover/"+"{}.mp4".format(ep)
 					self.r = requests.get(self.http,stream=True)
 					self.total_arquivo = int(self.r.headers["Content-length"])
-					self.progresso = tqdm(desc="Baixando...",iterable=self.r.iter_content(chunk_size=1024),total=self.total_arquivo,unit=" Kb",unit_scale=True,unit_divisor=1024,colour="blue")
+					self.progresso = tqdm(desc=f"[{self.diahora}:{self.diaminuto}:{self.diasegundo}] [\033[1;32mINFO\033[m]: Baixando",iterable=self.r.iter_content(chunk_size=1024),total=self.total_arquivo,unit=" Kb",unit_scale=True,unit_divisor=1024,colour="blue")
 
 					with open(self.nome+ste(ep)+".mp4","wb") as video_black:
 						for dados in self.progresso:
 							os.path.join("Black_Clover"+"/"+str(video_black.write(dados)))
 							self.progresso.update(len(dados))
 						self.console.print("Status [COMPLETO]!",style="green bold")
+						video_black.close()
 
 			elif "cavaleiros-do-zodiaco" in self.url_download2:
 				os.makedirs("Cavaleiros_Do_Zodiaco",exist_ok=True)
@@ -220,7 +228,7 @@ class iniciar_download:
 					self.http = "https://servertv001.com/animes/c/cavaleiros-do-zodiaco-dublado/"+"{}.mp4".format(ep)
 					self.r = requests.get(self.http,stream=True)
 					self.total_arquivo = int(self.r.headers["Content-length"])
-					self.progresso = tqdm(desc="Baixando...",iterable=self.r.iter_content(chunk_size=1024),total=self.total_arquivo,unit=" Kb",unit_scale=True,unit_divisor=1024,colour="blue")
+					self.progresso = tqdm(desc=f"[{self.diahora}:{self.diaminuto}:{self.diasegundo}] [\033[1;32mINFO\033[m]: Baixando",iterable=self.r.iter_content(chunk_size=1024),total=self.total_arquivo,unit=" Kb",unit_scale=True,unit_divisor=1024,colour="blue")
 
 					with open(self.nome+str(ep)+".mp4","wb") as video_cavaleiro:
 						for dados in self.progresso:
@@ -239,7 +247,7 @@ class iniciar_download:
 					self.http = "https://servertv001.com/animes/p/pokemon-dublado/"+"{}.mp4".format(ep)
 					self.r = requests.get(self.http,stream=True)
 					self.total_arquivo = int(self.r.headers["Content-length"])
-					self.progresso = tqdm(desc="Baixando...",iterable=self.r.iter_content(chunk_size=1024),total=self.total_arquivo,unit=" Kb",unit_scale=True,unit_divisor=1024,colour="blue")
+					self.progresso = tqdm(desc=f"[{self.diahora}:{self.diaminuto}:{self.diasegundo}] [\033[1;32mINFO\033[m]: Baixando",iterable=self.r.iter_content(chunk_size=1024),total=self.total_arquivo,unit=" Kb",unit_scale=True,unit_divisor=1024,colour="blue")
 
 					with open(self.nome+str(ep)+".mp4","wb") as video_pokemon:
 						for dados in self.progresso:
@@ -258,12 +266,13 @@ class iniciar_download:
 					self.http = "https://servertv001.com/animes/c/cowboy-bebop/"+"{}.mp4".format(ep)
 					self.r = requests.get(self.http,stream=True)
 					self.total_arquivo = int(self.r.headers["Content-length"])
-					self.progresso = tqdm(desc="Baixando...",iterable=self.r.iter_content(chunk_size=1024),total=self.total_arquivo,unit=" Kb",unit_scale=True,unit_divisor=1024,colour="blue")
+					self.progresso = tqdm(desc=f"[{self.diahora}:{self.diaminuto}:{self.diasegundo}] [\033[1;32mINFO\033[m]: Baixando",iterable=self.r.iter_content(chunk_size=1024),total=self.total_arquivo,unit=" Kb",unit_scale=True,unit_divisor=1024,colour="blue")
 
 					with open(self.nome+str(ep)+".mp4","wb") as video_cowboy:
 						for dados in self.progresso:
 							os.path.join("Cowboy_Bebop"+"/"+str(video_cowboy.write(dados)))
 							self.progresso.update(len(dados))
+						self.console.print("Status [COMPLETO]!",style="green bold")
 						video_cowboy.close()
 
 			elif "hunter-x-hunter" in self.url_download2:
@@ -276,12 +285,13 @@ class iniciar_download:
 					self.http = "https://servertv001.com/animes/h/hunter-x-hunter-legendado/"+"{}.mp4".format(ep)
 					self.r = requests.get(self.http,stream=True)
 					self.total_arquivo = int(self.r.headers["Content-length"])
-					self.progresso = tqdm(desc="Baixando...",iterable=self.r.iter_content(chunk_size=1024),total=self.total_arquivo,unit=" Kb",unit_scale=True,unit_divisor=1024,colour="blue")
+					self.progresso = tqdm(desc=f"[{self.diahora}:{self.diaminuto}:{self.diasegundo}] [\033[1;32mINFO\033[m]: Baixando",iterable=self.r.iter_content(chunk_size=1024),total=self.total_arquivo,unit=" Kb",unit_scale=True,unit_divisor=1024,colour="blue")
 
 					with open(self.nome+str(ep)+".mp4","wb") as video_hunter:
 						for dados in self.progresso:
 							os.path.join("Hunter_X_Hunter"+"/"+str(video_hunter.write(dados)))
 							self.progresso.update(len(dados))
+						self.console.print("Status [COMPLETO]!",style="green bold")
 						video_hunter.close()
 
 			elif "bleach" in self.url_download2:
@@ -294,12 +304,13 @@ class iniciar_download:
 					self.http = "https://cdn.serverotaku01.co/010/animes/b/bleach/"+"{}.mp4".format(ep)
 					self.r = requests.get(self.http,stream=True)
 					self.total_arquivo = int(self.r.headers["Content-length"])
-					self.progresso = tqdm(desc="Baixando...",iterable=self.r.iter_content(chunk_size=1024),total=self.total_arquivo,unit=" Kb",unit_scale=True,unit_divisor=1024,colour="blue")
+					self.progresso = tqdm(desc=f"[{self.diahora}:{self.diaminuto}:{self.diasegundo}] [\033[1;32mINFO\033[m]: Baixando",iterable=self.r.iter_content(chunk_size=1024),total=self.total_arquivo,unit=" Kb",unit_scale=True,unit_divisor=1024,colour="blue")
 
 					with open(self.nome+str(ep)+".mp4","wb") as video_bleach:
 						for dados in self.progresso:
 							os.path.join("Bleach"+"/"+str(video_bleach.write(dados)))
 							self.progresso.update(len(dados))
+						self.console.print("Status [COMPLETO]!",style="green bold")
 						video_bleach.close()
 
 			elif "fairy-tail" in self.url_download2:
@@ -312,12 +323,13 @@ class iniciar_download:
 					self.http = "https://servertv001.com/animes/f/fairy-tail/"+"{}.mp4".format(ep)
 					self.r = requests.get(self.http,stream=True)
 					self.total_arquivo = int(self.r.headers["Content-length"])
-					self.progresso = tqdm(desc="Baixando...",iterable=self.r.iter_content(chunk_size=1024),total=self.total_arquivo,unit=" Kb",unit_scale=True,unit_divisor=1024,colour="blue")
+					self.progresso = tqdm(desc=f"[{self.diahora}:{self.diaminuto}:{self.diasegundo}] [\033[1;32mINFO\033[m]: Baixando",iterable=self.r.iter_content(chunk_size=1024),total=self.total_arquivo,unit=" Kb",unit_scale=True,unit_divisor=1024,colour="blue")
 
 					with open(self.nome+str(ep)+".mp4","wb") as video_fairy:
 						for dados in self.progresso:
 							os.path.join("Fairy_Tail"+"/"+str(video_fairy.write(dados)))
 							self.progresso.update(len(dados))
+						self.console.print("Status [COMPLETO]!",style="green bold")
 						video_fairy.close()
 
 
@@ -331,12 +343,13 @@ class iniciar_download:
 					self.http = "https://servertv001.com/animes/k/kakegurui/"+"{}.mp4".format(ep)
 					self.r = requests.get(self.http,stream=True)
 					self.total_arquivo = int(self.r.headers["Content-length"])
-					self.progresso = tqdm(desc="Baixando...",iterable=self.r.iter_content(chunk_size=1024),total=self.total_arquivo,unit=" Kb",unit_scale=True,unit_divisor=1024,colour="blue")
+					self.progresso = tqdm(desc=f"[{self.diahora}:{self.diaminuto}:{self.diasegundo}] [\033[1;32mINFO\033[m]: Baixando",iterable=self.r.iter_content(chunk_size=1024),total=self.total_arquivo,unit=" Kb",unit_scale=True,unit_divisor=1024,colour="blue")
 
 					with open(self.nome+str(ep)+".mp4","wb") as video_kake:
 						for dados in self.progresso:
 							os.path.join("Kakegurui"+"/"+str(video_kake.write(dados)))
 							self.progresso.update(len(dados))
+						self.console.print("Status [COMPLETO]!",style="green bold")
 						video_kake.close()
 
 			elif "kengan-ashura" in self.url_download2:
@@ -349,12 +362,13 @@ class iniciar_download:
 					self.http = "https://cdn.serverotaku01.co/010/animes/k/kengan-ashura-dublado/"+"{}.mp4".format(ep)
 					self.r = requests.get(self.http,stream=True)
 					self.total_arquivo = int(self.r.headers["Content-length"])
-					self.progresso = tqdm(desc="Baixando...",iterable=self.r.iter_content(chunk_size=1024),total=self.total_arquivo,unit=" Kb",unit_scale=True,unit_divisor=1024,colour="blue")
+					self.progresso = tqdm(desc=f"[{self.diahora}:{self.diaminuto}:{self.diasegundo}] [\033[1;32mINFO\033[m]: Baixando",iterable=self.r.iter_content(chunk_size=1024),total=self.total_arquivo,unit=" Kb",unit_scale=True,unit_divisor=1024,colour="blue")
 
 					with open(self.nome+str(ep)+".mp4","wb") as video_kengan:
 						for dados in self.progresso:
 							os.path.join("Kengan_Ashura"+"/"+str(video_kengan.write(dados)))
 							self.progresso.update(len(dados))
+						self.console.print("Status [COMPLETO]!",style="green bold")
 						video_kengan.close()
 
 			elif "eden" in self.url_download2:
@@ -367,12 +381,13 @@ class iniciar_download:
 					self.http = "https://cdn.serverotaku01.co/010/animes/e/eden-dublado/"+"{}.mp4".format(ep)
 					self.r = requests.get(self.http,stream=True)
 					self.total_arquivo = int(self.r.headers["Content-length"])
-					self.progresso = tqdm(desc="Baixando...",iterable=self.r.iter_content(chunk_size=1024),total=self.total_arquivo,unit=" Kb",unit_scale=True,unit_divisor=1024,colour="blue")
+					self.progresso = tqdm(desc=f"[{self.diahora}:{self.diaminuto}:{self.diasegundo}] [\033[1;32mINFO\033[m]: Baixando",iterable=self.r.iter_content(chunk_size=1024),total=self.total_arquivo,unit=" Kb",unit_scale=True,unit_divisor=1024,colour="blue")
 			
 					with open(self.nome+str(ep)+".mp4","wb") as video_eden:
 						for dados in self.progresso:
 							os.path.join("Eden"+"/"+str(video_eden.write(dados)))
 							self.progresso.update(len(dados))
+						self.console.print("Status [COMPLETO]!",style="green bold")
 						video_eden.close()
 
 			elif "beastars" in self.url_download2:
@@ -385,12 +400,13 @@ class iniciar_download:
 					self.http = "https://cdn.serverotaku01.co/010/animes/b/beastars/"+"{}.mp4".format(ep)
 					self.r = requests.get(self.http,stream=True)
 					self.total_arquivo = int(self.r.headers["Content-length"])
-					self.progresso = tqdm(desc="Baixando...",iterable=self.r.iter_content(chunk_size=1024),total=self.total_arquivo,unit=" Kb",unit_scale=True,unit_divisor=1024,colour="blue")
+					self.progresso = tqdm(desc=f"[{self.diahora}:{self.diaminuto}:{self.diasegundo}] [\033[1;32mINFO\033[m]: Baixando",iterable=self.r.iter_content(chunk_size=1024),total=self.total_arquivo,unit=" Kb",unit_scale=True,unit_divisor=1024,colour="blue")
 
 					with open(self.nome+str(ep)+".mp4","wb") as video_beas:
 						for dados in self.progresso:
 							os.path.join("Beastars"+"/"+str(video_beas.write(dados)))
 							self.progresso.update(len(dados))
+						self.console.print("Status [COMPLETO]!",style="green bold")
 						video_beas.close()
 
 			elif "angel-beats" in self.url_download2:
@@ -403,12 +419,13 @@ class iniciar_download:
 					self.http = "https://servertv001.com/animes/a/angel-beats/"+"{}.mp4".format(ep)
 					self.r = requests.get(self.http,stream=True)
 					self.total_arquivo = int(self.r.headers["Content-length"])
-					self.progresso = tqdm(desc="Baixando...",iterable=self.r.iter_content(chunk_size=1024),total=self.total_arquivo,unit=" Kb",unit_scale=True,unit_divisor=1024,colour="blue")
+					self.progresso = tqdm(desc=f"[{self.diahora}:{self.diaminuto}:{self.diasegundo}] [\033[1;32mINFO\033[m]: Baixando",iterable=self.r.iter_content(chunk_size=1024),total=self.total_arquivo,unit=" Kb",unit_scale=True,unit_divisor=1024,colour="blue")
 
 					with open(self.nome+str(ep)+".mp4","wb") as video_angel:
 						for dados in self.progresso:
 							os.path.join("Angel_Beats"+"/"+str(video_angel.write(dados)))
 							self.progresso.update(len(dados))
+						self.console.print("Status [COMPLETO]!",style="green bold")
 						video_angel.close()
 
 			elif "given" in self.url_download2:
@@ -421,12 +438,13 @@ class iniciar_download:
 					self.http = "https://cdn.serverotaku01.co/010/animes/g/given/"+"{}.mp4".format(ep)
 					self.r = requests.get(self.http,stream=True)
 					self.total_arquivo = int(self.r.headers["Content-length"])
-					self.progresso = tqdm(desc="Baixando...",iterable=self.r.iter_content(chunk_size=1024),total=self.total_arquivo,unit=" Kb",unit_scale=True,unit_divisor=1024,colour="blue")
+					self.progresso = tqdm(desc=f"[{self.diahora}:{self.diaminuto}:{self.diasegundo}] [\033[1;32mINFO\033[m]: Baixando",iterable=self.r.iter_content(chunk_size=1024),total=self.total_arquivo,unit=" Kb",unit_scale=True,unit_divisor=1024,colour="blue")
 
 					with open(self.nome+str(ep)+".mp4","wb") as video_given:
 						for dados in self.progresso:
 							os.path.join("Given"+"/"+str(video_given.write(dados)))
 							self.progresso.update(len(dados))
+						self.console.print("Status [COMPLETO]!",style="green bold")
 						video_given.close()
 			
 			elif "plastic-memories" in self.url_download2:
@@ -439,12 +457,13 @@ class iniciar_download:
 					self.http = "https://servertv001.com/animes/p/plastic-memories/"+"{}.mp4".format(ep)
 					self.r = requests.get(self.http,stream=True)
 					self.total_arquivo = int(self.r.headers["Content-length"])
-					self.progresso = tqdm(desc="Baixando...",iterable=self.r.iter_content(chunk_size=1024),total=self.total_arquivo,unit=" Kb",unit_scale=True,unit_divisor=1024,colour="blue")
+					self.progresso = tqdm(desc=f"[{self.diahora}:{self.diaminuto}:{self.diasegundo}] [\033[1;32mINFO\033[m]: Baixando",iterable=self.r.iter_content(chunk_size=1024),total=self.total_arquivo,unit=" Kb",unit_scale=True,unit_divisor=1024,colour="blue")
 
 					with open(self.nome+str(ep)+".mp4","wb") as video_plast:
 						for dados in self.progresso:
 							os.path.join("Plastic_Memories"+"/"+str(video_plast.write(dados)))
 							self.progresso.update(len(dados))
+						self.console.print("Status [COMPLETO]!",style="green bold")
 						video_plast.close()
 
 			elif "kaichou-wa-maid-sama" in self.url_download2:
@@ -457,10 +476,11 @@ class iniciar_download:
 					self.http = "https://servertv001.com/animes/k/kaichou-wa-maid-sama/"+"{}.mp4".format(ep)
 					self.r = requests.get(self.http,stream=True)
 					self.total_arquivo = int(self.r.headers["Content-length"])
-					self.progresso = tqdm(desc="Baixando...",iterable=self.r.iter_content(chunk_size=1024),total=self.total_arquivo,unit=" Kb",unit_scale=True,unit_divisor=1024,colour="blue")
+					self.progresso = tqdm(desc=f"[{self.diahora}:{self.diaminuto}:{self.diasegundo}] [\033[1;32mINFO\033[m]: Baixando",iterable=self.r.iter_content(chunk_size=1024),total=self.total_arquivo,unit=" Kb",unit_scale=True,unit_divisor=1024,colour="blue")
 
 					with open(self.nome+str(ep)+".mp4","wb") as video_kaich:
 						for dados in self.progresso:
 							os.path.join("Kaichou_Wa_Maid_Sama"+"/"+str(video_kaich.write(dados)))
 							self.progresso.update(len(dados))
+							self.console.print("Status [COMPLETO]!",style="green bold")
 						video_kaich.close()
