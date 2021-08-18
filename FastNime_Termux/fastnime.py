@@ -96,12 +96,20 @@ class AnimeDownload:
 			self.barra_progresso = tqdm(desc="Baixando...",iterable=self.x.iter_content(chunk_size=1024),total=self.tamanho_episodio,unit=" Kb",unit_scale=True,unit_divisor=1024,colour="blue")
 			
 			os.chdir(self.local_armazenamento)
-			os.chdir("Animes")
-			with open(self.nome_download+self.episodio+".mp4","wb") as ep:
-				for byte_episodio in self.barra_progresso:
-					os.path.join("Animes" + "/" + str(ep.write(byte_episodio)))
-					self.barra_progresso.update(len(byte_episodio))
-				ep.close()
+			try:
+				os.chdir("Animes")
+			except:
+				with open(self.nome_download+self.episodio+".mp4","wb") as ep:
+					for byte_episodio in self.barra_progresso:
+						os.path.join("Animes" + "/" + str(ep.write(byte_episodio)))
+						self.barra_progresso.update(len(byte_episodio))
+					ep.close()
+			else:
+				with open(self.nome_download+self.episodio+".mp4","wb") as ep:
+					for byte_episodio in self.barra_progresso:
+						os.path.join("Animes" + "/" + str(ep.write(byte_episodio)))
+						self.barra_progresso.update(len(byte_episodio))
+					ep.close()
 
 			print("Episódio {} de {} baixado!".format(self.episodio,self.nome_download))
 
