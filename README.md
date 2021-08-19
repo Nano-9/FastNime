@@ -26,7 +26,3 @@ Por enquanto são duas opções, são elas:
 # Opção que irei adicionar futuramente:
 
 - Assistir a todos os episódios online
-
-# ATENÇÃO:
-
-- Para evitar erros, coloque o programa na pasta de Downloads!
