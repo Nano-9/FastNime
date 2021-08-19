@@ -14,7 +14,6 @@ try:
 	from down import iniciar_download
 	from tqdm import tqdm
 	from time import sleep
-	from pathlib import Path
 	from rich.console import Console
 except:
 	print("\n[ATENÇÃO]: Parece que você não tem as bibliotecas necessárias para rodar o programa!\n")
