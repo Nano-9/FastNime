@@ -3,7 +3,6 @@ import rich
 import requests
 from tqdm import tqdm
 from rich.console import Console
-from pathlib import Path
 
 class iniciar_download:
 
