@@ -1,7 +1,7 @@
 # FastNime 1.0
 
 ![Imagem do FastNime by: lucas-Dk](https://user-images.githubusercontent.com/69327287/129746016-e6d93b08-5b66-4d71-a098-2c505f1c6a2e.png)
-
+<hr>
 
 ## O que é o FastNime?
 
@@ -9,20 +9,19 @@ R: O FastNime é o meu projeto pessoal para baixar animes ou assistir online pel
 Nele você tem acesso a uma tabela atualizada com os animes disponíveis e a quantidade de episódios
 que estão disponíveis para download.
 
-- Antes de rodar o programa, digite: pip install -r requirements.txt
 - A tabela de animes vai estar sendo atualizada sempre!
+<hr>
 
-# Fale comigo pelo whatsapp:
+## Como rodar o código?
 
-- Clique aqui: ![Whatsapp](https://wa.me/5531986802198)
+- Abra seu terminal e digite: git clone https://github.com/lucas-Dk/FastNime
+- cd FastNime
+- pip install -r requeriments.txt
+- python3 fastnime.py
+<hr>
 
-## Opções dentro do FastNime:
+## Onde ficam os episódios baixados?
 
-Por enquanto são duas opções, são elas:
+- Se você baixar apenas um episódio, ele ficará salvo dentro da pasta ANIMES
+- Se você baixar todos os episódios dos animes, os episódios ficaram salvos dentro da pasta com o nome do anime que você escolheu baixar!
 
-- Visualizar a tabela completa de animes disponíveis
-- Fazer o download dos episódios (podendo escolher se quer baixar apenas um ou todos de uma vez!)
-
-# Opção que irei adicionar futuramente:
-
-- Assistir a todos os episódios online
