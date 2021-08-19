@@ -16,7 +16,7 @@ que estão disponíveis para download.
 
 - Abra seu terminal e digite: git clone https://github.com/lucas-Dk/FastNime
 - cd FastNime
-- pip install -r requeriments.txt
+- pip install -r requirements.txt
 - python3 fastnime.py
 <hr>
 
