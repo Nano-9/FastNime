@@ -14,7 +14,7 @@ que estão disponíveis para download.
 
 ## Como rodar o código?
 
-- Abra seu terminal e digite: git clone https://github.com/lucas-Dk/FastNime
+- Abra seu terminal e digite: git clone https://github.com/nano-9/FastNime
 - cd FastNime
 - pip install -r requirements.txt
 - python3 fastnime.py
